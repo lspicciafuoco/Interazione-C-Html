@@ -34,7 +34,7 @@ int main(int argc, char** argv) {
             
                    
     
-    // La parte del JavaScript è stata ricercata sul web e anche grazie all'aiuto di un mio compagno di classe 
+    // La parte del JavaScript è stata ricercata sul web e finita anche grazie all'aiuto di un mio compagno di classe 
     
      FILE *puntafileHTML;
     puntafileHTML = fopen("checkbox.html","w");      //apertura del file Html in modalità scrittura
