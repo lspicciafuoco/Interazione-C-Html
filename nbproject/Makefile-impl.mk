@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=hiui
+PROJECTNAME=Interazione c-html
 
 # Active Configuration
 DEFAULTCONF=Debug

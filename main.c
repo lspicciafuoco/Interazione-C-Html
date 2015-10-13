@@ -1,70 +1,62 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#define FNAME "checkbox.html"
-#define FINGLESE "inglese.txt"
-#define FMATEMATICA "matematica.txt"
-#define FITALIANO "italiano.txt"
-#define FINFORMATICA "informatica.txt"
-#define MAX_FNAMELEN 255
-#define MAX_STRLEN 255
+#define FDOCENTI "DOCENTI.txt"       
+#define FALUNNI "ALUNNI.txt"
+#define MAXSTRLEN 255
 
 
+//Funzione per scambiare il carattere '-' con il carattere ' '
+void sostituisci(char* stringa, char vecchio, char nuovo){
+    int i;
+    for(i=0;i<strlen(stringa);i++){    // scorre le stringhe e sostituisce il vecchio carattere con quello indicato al richiamo della funzione
+        if(stringa[i]==vecchio)
+            stringa[i]=nuovo;
+  }
+}
 
-int main(int argc, char** argv){
-    
-    char matematica[MAX_STRLEN+1];
-    char informatica[MAX_STRLEN+1];
-    char inglese[MAX_STRLEN+1];
-    char italiano[MAX_STRLEN+1];
-    
-    FILE *puntafileInglese;
-    puntafileInglese= fopen(FINGLESE, "r");
-    fscanf(puntafileInglese,"%s", inglese);
-   
-    FILE *puntafileMatematica;
-    puntafileMatematica= fopen(FMATEMATICA,"r");
-    fscanf(puntafileInglese,"%s", inglese);
-    
-    FILE *puntafileInformatica;
-    puntafileInformatica=fopen(FINFORMATICA,"r");
-    fscanf(puntafileInformatica,"%s", informatica);
-    
-    FILE *puntafileItaliano;
-    puntafileItaliano=fopen(FITALIANO, "r");
-    fscanf(puntafileItaliano,"%s", italiano);
-    
-     int i;
-    FILE *puntaFile;
-    char elenco[MAX_FNAMELEN];
-    
-    
-    
- puntaFile = fopen(FNAME, "w");
-    if(puntaFile == NULL) {
-        fprintf(stderr, "Impossibile creare il file %s\n", FNAME);
-        exit(1);
-    }
-    else{
-        printf("IL FILE E' STATO CREATO\n");
-    }    
-    
- fprintf(puntaFile,"<html>"
-"<body>" 
- "<select>"
-  "<option value=\"%s\">Matematica</option>"
-  "<option value=\"%s\">Informatica</option>"
-  "<option value=\"%s\">Inglese</option>"
-  "<option value=\"%s\">Italiano</option>"
-"</select>"
+int main(int argc, char** argv) {
+
+    char alunni[MAXSTRLEN+1];
+    char docenti[MAXSTRLEN+1];
   
-"</body>"
-"</html>"
-,inglese,italiano,matematica,informatica);
-
+    //apre i file DOCENTI e ALUNNI in modalità lettura
+    FILE *puntafileDocenti;
+    puntafileDocenti = fopen(FDOCENTI,"r");
+    fscanf(puntafileDocenti,"%s",docenti);       // assegno a puntafileDocenti la stringa docenti
+    sostituisci(docenti, '_',' ');              //sostituisce il carattere '_' con il carattere ' ' grazie alla funzione sostituisci
+            
+            
+    FILE *puntafileAlunni;
+    puntafileAlunni = fopen(FALUNNI,"r");
+    fscanf(puntafileAlunni,"%s",alunni);     // assegno a puntafileDocenti la stringa docenti
+    sostituisci(alunni, '_',' ');           //sostituisce il carattere '_' con il carattere ' ' grazie alla funzione sostituisci
+            
+                   
     
-    fclose(puntaFile);
-    printf("Dati salvati in %s\n", FNAME);
+    // La parte del JavaScript è stata ricercata sul web e anche grazie all'aiuto di un mio compagno di classe 
+    
+     FILE *puntafileHTML;
+    puntafileHTML = fopen("checkbox.html","w");      //apertura del file Html in modalità scrittura
+    
+    fprintf(puntafileHTML,"<html>\n");
+    fprintf(puntafileHTML,"<body>\n");
+    
+    //Istruzioni per la select
+    fprintf(puntafileHTML,"<form id=\"frm\"><select id=\"sel\" onchange=\"printNames()\"><option value=\"\" selected=\"selected\"><option value=\"%s\">alunni</option><option value=\"%s\">docenti</option></select></form>",alunni, docenti);
+    fprintf(puntafileHTML,"<SCRIPT>function printNames(){var e = document.getElementById(\"sel\");var strUser = e.options[e.selectedIndex].value;document.getElementById(\'box\').innerHTML = strUser;}</SCRIPT>");
+    fprintf(puntafileHTML,"<div id=\"box\"></div>");
+    
+    fprintf(puntafileHTML,"</body>\n");
+    fprintf(puntafileHTML,"</html>\n");
+    fclose(puntafileHTML);
+
     
     return (EXIT_SUCCESS);
 }
+    
+
+//Come far comparire vuota la checkbox all'apertura della pagina?
+//Riflettendo sul funzionamento del Javascript ho creato un 'altra opzione vuota selezionata già all'apertura
+
+//Come 
