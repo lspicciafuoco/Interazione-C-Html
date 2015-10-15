@@ -3,6 +3,7 @@
 #include <string.h>
 #define FDOCENTI "DOCENTI.txt"       
 #define FALUNNI "ALUNNI.txt"
+#define FMASTER "MASTER.txt"
 #define MAXSTRLEN 255
 
 
@@ -16,19 +17,35 @@ void sostituisci(char* stringa, char vecchio, char nuovo){
 }
 
 int main(int argc, char** argv) {
-
+    
+    char *stringa1 = "alunni";
+    char *stringa2 = "docenti";
     char alunni[MAXSTRLEN+1];
     char docenti[MAXSTRLEN+1];
+    
+    while(!feof){
+        FILE *puntafileMaster;
+        puntafileMaster = fopen(FMASTER,"r");
+        if(strcmp(stringa2,stringa1){
+            strcpy("%[^'docenti']")-("%[^_]");
+        }
+        else{
+            strcpy("%[^'alunni']")-("%[^_]");
+            
+        }
+     }
+    }
+    
   
     //apre i file DOCENTI e ALUNNI in modalità lettura
     FILE *puntafileDocenti;
-    puntafileDocenti = fopen(FDOCENTI,"r");
+    puntafileDocenti = fopen(FDOCENTI,"wr");
     fscanf(puntafileDocenti,"%s",docenti);       // assegno a puntafileDocenti la stringa docenti
     sostituisci(docenti, '_',' ');              //sostituisce il carattere '_' con il carattere ' ' grazie alla funzione sostituisci
             
             
     FILE *puntafileAlunni;
-    puntafileAlunni = fopen(FALUNNI,"r");
+    puntafileAlunni = fopen(FALUNNI,"wr");
     fscanf(puntafileAlunni,"%s",alunni);     // assegno a puntafileDocenti la stringa docenti
     sostituisci(alunni, '_',' ');           //sostituisce il carattere '_' con il carattere ' ' grazie alla funzione sostituisci
             

@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=Interazione c-html
+PROJECTNAME=Interazione-C-Html
 
 # Active Configuration
 DEFAULTCONF=Debug
